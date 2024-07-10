@@ -1,0 +1,25 @@
+<!-- views/home.handlebars -->
+{{!== Extend the main layout --}}
+{{#extend 'main'}}
+
+{{!-- Define the block for content --}}
+{{#content 'body'}}
+    <h1>Jake's Tech Blog</h1>
+    {{#if logged_in}}
+        <a href="/dashboard">Go to your dashboard</a>
+    {{else}}
+        <a href="/login">Login</a>
+        <a href="/signup">Signup</a>
+    {{/if}}
+
+    {{!-- List of blog posts --}}
+    {{#each posts}}
+        <div class="post">
+            <h2>{{this.title}}</h2>
+            <p>{{this.user.username}} on {{this.createdAt}}</p>
+            <a href="/post/{{this.id}}">Read more</a>
+        </div>
+    {{/each}}
+{{/content}}
+
+{{/extend}}
